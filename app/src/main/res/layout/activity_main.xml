@@ -4,41 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.justjava.MainActivity"
-  >
+    tools:context="com.example.android.justjava.MainActivity">
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quantity_text_view"
-        android:textAllCaps="true"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/quantity_value"
-        android:textColor="#000000"
-        android:id="@+id/quantity_text_view"
-        android:textSize="16sp"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        />
-    <Button
-        android:id="@+id/order_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_text"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
 
-        />
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/quantity_text_view"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/quantity_value"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/order_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="submitOrder"
+            android:text="@string/btn_text" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
