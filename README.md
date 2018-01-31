@@ -1,8 +1,10 @@
 # JustJava
-## My second app for ordering coffee
+## A coffee  ordering app
+### My second app
 
-Working with Android Beginner Google Scholarship via Udacity
-set initial value and cost, increment/decrement buttons, simple methods
+Grow with Google Scholarship: Android Basics
+
+increment/decrement buttons, caluculate price on click
 
 Developing in Android Studio
 
