@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="8dp"
             android:text="@string/quantity_text_view"
             android:textAllCaps="true" />
         <Button
@@ -23,7 +23,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:onClick="increment"
             android:text="+" />
 
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:text="@string/quantity_value"
+            android:paddingTop="8dp"
+            android:text="2"
             android:textColor="#000000"
             android:textSize="16sp" />
         <Button
@@ -41,14 +41,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:onClick="decrement"
             android:text="-" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="8dp"
             android:text="@string/price_text_view"
             android:textAllCaps="true" />
 
@@ -57,8 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:text="@string/price_value"
+            android:paddingTop="8dp"
+            android:text="$10"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:onClick="submitOrder"
             android:text="@string/btn_text" />
     </LinearLayout>
