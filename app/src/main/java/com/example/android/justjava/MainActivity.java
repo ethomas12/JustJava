@@ -14,8 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
-
 
 /**
  * This app displays an order form to order coffee.
@@ -34,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        displayPrice(quantity * 5);
+        int price = quantity * 5;
+        String priceMessage = "Total = $" + price;
+        String confirmMessage = "Thank you!";
+        displayMessage(priceMessage);
+        confirmMessage(confirmMessage);
     }
 
     /**
@@ -48,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given price on the screen.
      */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
+//    private void displayPrice(int number) {
+//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+//        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+//    }
 
     /**
      * This method increments the quantity by 1 when the plus button is clicked.
@@ -67,5 +69,21 @@ public class MainActivity extends AppCompatActivity {
     public void decrement (View view) {
         quantity = quantity - 1;
         display(quantity);
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+    }
+
+    /**
+     * This method displays the confirm message on the screen.
+     */
+    private void confirmMessage (String message) {
+        TextView confirmTextView = (TextView) findViewById(R.id.confirm_text_view);
+        confirmTextView.setText(message);
     }
 }
