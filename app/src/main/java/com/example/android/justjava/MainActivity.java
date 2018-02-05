@@ -33,34 +33,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = quantity * 5;
-        String priceMessage = "Total = $" + price;
-        String confirmMessage = "Thank you!";
+        String priceMessage = "Total = $" + price + "\nMotha fuckin coffee";
         displayMessage(priceMessage);
-        confirmMessage(confirmMessage);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-
-    /**
-     * This method displays the given price on the screen.
-     */
-//    private void displayPrice(int number) {
-//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-//        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-//    }
 
     /**
      * This method increments the quantity by 1 when the plus button is clicked.
      */
     public void increment (View view) {
         quantity = quantity + 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void decrement (View view) {
         quantity = quantity - 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
@@ -77,13 +67,5 @@ public class MainActivity extends AppCompatActivity {
     private void displayMessage(String message) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message);
-    }
-
-    /**
-     * This method displays the confirm message on the screen.
-     */
-    private void confirmMessage (String message) {
-        TextView confirmTextView = (TextView) findViewById(R.id.confirm_text_view);
-        confirmTextView.setText(message);
     }
 }
