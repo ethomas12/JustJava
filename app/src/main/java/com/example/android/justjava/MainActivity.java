@@ -21,6 +21,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    String priceMessage = "";
+    String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +34,40 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = quantity * 5;
-        String priceMessage = "Total = $" + price + "\nMotha fuckin coffee";
-        displayMessage(priceMessage);
+        int price = calculatePrice();
+        calculatePrice();
+        createOrderSummary(name, price);
+
+        displayMessage(createOrderSummary("Bob Dobbs", price));
+    }
+
+    /**
+     * Calculates the price of the order.
+     *
+     * @return total price for the number of cups of coffee ordered
+     */
+    private int calculatePrice() {
+        return quantity * 5;
+    }
+
+    /**
+     * This method creates the Order Summary
+     *
+     * @param name name of the user
+     * @param  price price of order
+     * @return text summary
+     */
+    private String createOrderSummary (String name, int price) {
+        String message = "Name: " + name + "\nQuantity: " + quantity + "\nTotal = $" + price + "\nThank you!";
+        return message;
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayQuantity(int number) {
+    private void displayQuantity(int showNumber) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + showNumber);
     }
 
     /**
@@ -65,7 +90,17 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+    }
+
+    /**
+     * This method decrements the quantity by 1 when the minus button is clicked.
+     */
+    public void reset (View view) {
+        quantity = 0;
+        priceMessage = "Total = $" + quantity;
+        displayMessage(priceMessage);
+        displayQuantity(quantity);
     }
 }
