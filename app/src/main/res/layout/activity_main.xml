@@ -3,19 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.justjava.MainActivity"
-    android:background="@drawable/yissbird">
+    tools:context="com.example.android.justjava.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="0dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:src="@drawable/yissbird"
+            android:layout_alignParentRight="true"
+            android:id="@+id/yissbird"/>
+
+        <TextView
+            android:id="@+id/motha_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:paddingRight="60dp"
+            android:layout_marginVertical="310dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:text="toppings"
+                android:textAllCaps="true" />
+
+            <CheckBox
+                android:id="@+id/whipped_cream_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Whipped Cream"
+                android:paddingLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"

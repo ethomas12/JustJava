@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice();
         calculatePrice();
         createOrderSummary(name, price);
+//        String yissView(displayMotha("Motha Fuckin' Coffee");
 
         displayMessage(createOrderSummary("Bob Dobbs", price));
     }
@@ -53,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method creates the Order Summary
      *
-     * @param name name of the user
-     * @param  price price of order
+     * @param name  name of the user
+     * @param price price of order
      * @return text summary
      */
-    private String createOrderSummary (String name, int price) {
+    private String createOrderSummary(String name, int price) {
         String message = "Name: " + name + "\nQuantity: " + quantity + "\nTotal = $" + price + "\nThank you!";
+        String message2 = "Motha Fuckin Coffee";
+        displayMotha(message2);
         return message;
     }
 
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method increments the quantity by 1 when the plus button is clicked.
      */
-    public void increment (View view) {
+    public void increment(View view) {
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method decrements the quantity by 1 when the minus button is clicked.
      */
-    public void decrement (View view) {
+    public void decrement(View view) {
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
@@ -95,11 +98,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMotha(String message2) {
+        TextView yissView = (TextView) findViewById(R.id.motha_text_view);
+        yissView.setText(message2);
+    }
+
+    /**
      * This method decrements the quantity by 1 when the minus button is clicked.
      */
-    public void reset (View view) {
+    public void reset(View view) {
         quantity = 0;
-        priceMessage = "Total = $" + quantity;
+        priceMessage = "$" + quantity;
         displayMessage(priceMessage);
         displayQuantity(quantity);
     }
