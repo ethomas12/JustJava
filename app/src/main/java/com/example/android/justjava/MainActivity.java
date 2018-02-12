@@ -12,6 +12,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
     String priceMessage = "";
-    String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-        calculatePrice();
-        createOrderSummary(name, price);
-//        String yissView(displayMotha("Motha Fuckin' Coffee");
+        CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
 
-        displayMessage(createOrderSummary("Bob Dobbs", price));
+        CheckBox chocolateCheckbox = findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = chocolateCheckbox.isChecked();
+
+        int price = calculatePrice();
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
+
+        displayMessage(priceMessage);
     }
 
     /**
@@ -54,15 +58,21 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method creates the Order Summary
      *
-     * @param name  name of the user
-     * @param price price of order
+     * @param price cost of order
+     * @param addWhippedCream add whipped cream true or false
      * @return text summary
      */
-    private String createOrderSummary(String name, int price) {
-        String message = "Name: " + name + "\nQuantity: " + quantity + "\nTotal = $" + price + "\nThank you!";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
+        String priceMessage = "Name: Si'mon deLeon";
+        priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
+        priceMessage += "\nAdd chocolate?  " + addChocolate;
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal = $" + price;
+        priceMessage += "\nThank you!";
         String message2 = "Motha Fuckin Coffee";
         displayMotha(message2);
-        return message;
+        return priceMessage;
+
     }
 
     /**
@@ -71,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int showNumber) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + showNumber);
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
     }
 
     /**
@@ -92,14 +110,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given text on the screen.
      */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
     private void displayMotha(String message2) {
         TextView yissView = (TextView) findViewById(R.id.motha_text_view);
         yissView.setText(message2);
@@ -113,5 +123,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage = "$" + quantity;
         displayMessage(priceMessage);
         displayQuantity(quantity);
+        displayMotha("");
     }
+
 }
