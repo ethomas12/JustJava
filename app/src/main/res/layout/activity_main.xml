@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,16 +35,25 @@
             android:text="" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp">
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/name_input"
+                android:hint="Name"
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="8dp"
+                android:paddingTop="16dp"
                 android:text="toppings"
                 android:textAllCaps="true" />
 
@@ -51,7 +61,6 @@
                 android:id="@+id/whipped_cream_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:paddingLeft="24dp"
                 android:text="Whipped Cream"
                 android:textSize="16sp" />
@@ -60,7 +69,6 @@
                 android:id="@+id/chocolate_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:paddingLeft="24dp"
                 android:text="Chocolate"
                 android:textSize="16sp" />
@@ -69,7 +77,6 @@
                 android:id="@+id/cat_shit_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:paddingLeft="24dp"
                 android:text="Cat Shit"
                 android:textSize="16sp" />
@@ -78,7 +85,6 @@
                 android:id="@+id/butmeg_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:paddingLeft="24dp"
                 android:text="Butmeg"
                 android:textSize="16sp" />
@@ -86,7 +92,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
                 android:paddingTop="16dp"
                 android:text="@string/quantity_text_view"
                 android:textAllCaps="true" />
@@ -100,7 +105,6 @@
                     android:id="@+id/minus_button"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:onClick="decrement"
                     android:text="-" />
@@ -128,7 +132,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
                 android:paddingTop="8dp"
                 android:text="@string/price_text_view"
                 android:textAllCaps="true" />
@@ -137,8 +140,8 @@
                 android:id="@+id/order_summary_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
                 android:paddingTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="$0"
                 android:textColor="#000000"
                 android:textSize="16sp" />
@@ -147,7 +150,6 @@
                 android:id="@+id/confirm_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
                 android:paddingTop="8dp"
                 android:text=""
                 android:textColor="#000000"
@@ -157,7 +159,6 @@
                 android:id="@+id/order_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
                 android:onClick="submitOrder"
                 android:text="@string/btn_text" />
 
