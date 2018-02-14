@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             priceMessage += "\nThank you!";
 
 
-            Toast.makeText(getApplicationContext(), "Motha Fuckin Coffeee.",
+            Toast.makeText(getApplicationContext(), "Motha Fuckin Coffee",
                     Toast.LENGTH_LONG).show();
 
             return priceMessage;
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int showNumber) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + showNumber);
     }
 
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
 
@@ -151,20 +151,26 @@ public class MainActivity extends AppCompatActivity {
      * This method increments the quantity by 1 when the plus button is clicked.
      */
     public void increment(View view) {
-        if (quantity <= 100) {
-            quantity = quantity + 1;
-            displayQuantity(quantity);
+        if (quantity == 10) {
+            Toast.makeText(getApplicationContext(), "too much coffee, man",
+                    Toast.LENGTH_SHORT).show();
+            return;
         }
+        quantity = quantity + 1;
+        displayQuantity(quantity);
     }
 
     /**
      * This method decrements the quantity by 1 when the minus button is clicked.
      */
     public void decrement(View view) {
-        if (quantity >= 2) {
-            quantity = quantity - 1;
-            displayQuantity(quantity);
+        if (quantity == 1) {
+            Toast.makeText(getApplicationContext(), "that's negative coffee, man",
+                    Toast.LENGTH_SHORT).show();
+            return;
         }
+        quantity = quantity - 1;
+        displayQuantity(quantity);
     }
 
     /**
