@@ -62,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
+                android:layout_marginBottom="8dp"
                 android:text="Whipped Cream"
                 android:textSize="16sp" />
 
@@ -70,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
+                android:layout_marginBottom="8dp"
                 android:text="Chocolate"
                 android:textSize="16sp" />
 
@@ -78,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
+                android:layout_marginBottom="8dp"
                 android:text="Cat Shit"
                 android:textSize="16sp" />
 
@@ -86,6 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
+                android:layout_marginBottom="8dp"
                 android:text="Butmeg"
                 android:textSize="16sp" />
 

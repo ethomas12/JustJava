@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
     String priceMessage = "";
-    String orderName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +37,29 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
-        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
-
-        CheckBox chocolateCheckbox = findViewById(R.id.chocolate_checkbox);
-        boolean hasChocolate = chocolateCheckbox.isChecked();
-
-        CheckBox catShitCheckbox = findViewById(R.id.cat_shit_checkbox);
-        boolean hasCatShit = catShitCheckbox.isChecked();
-
-        CheckBox butmegCheckbox = findViewById(R.id.butmeg_checkbox);
-        boolean hasButmeg = butmegCheckbox.isChecked();
-
+        //        Find the user's name
         EditText nameInputView = findViewById(R.id.name_input);
         String orderName = nameInputView.getText().toString();
 
+        //        Whipped Cream true  / false
+        CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
 
-        int price = calculatePrice();
+        //        Chocolate true  / false
+        CheckBox chocolateCheckbox = findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = chocolateCheckbox.isChecked();
+
+        //        Cat shit true / false
+        CheckBox catShitCheckbox = findViewById(R.id.cat_shit_checkbox);
+        boolean hasCatShit = catShitCheckbox.isChecked();
+
+        //        Butmeg true  / false
+        CheckBox butmegCheckbox = findViewById(R.id.butmeg_checkbox);
+        boolean hasButmeg = butmegCheckbox.isChecked();
+
+
+        int price = calculatePrice(hasWhippedCream, hasChocolate, hasCatShit, hasButmeg);
+
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, hasCatShit, hasButmeg, orderName);
 
         displayMessage(priceMessage);
@@ -63,8 +70,31 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return total price for the number of cups of coffee ordered
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate, boolean addCatShit, boolean addButmeg) {
+        int basePrice = 5;
+
+//        Add $$ if user wants topping
+        if (addWhippedCream) {
+
+            basePrice += 1;
+        }
+
+        if (addChocolate) {
+
+            basePrice += 2;
+        }
+
+        if (addCatShit) {
+
+            basePrice += 3;
+        }
+
+        if (addButmeg) {
+
+            basePrice += 4;
+        }
+
+        return quantity * basePrice;
     }
 
     /**
@@ -86,8 +116,12 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal = $" + price;
         priceMessage += "\nThank you!";
-        String message2 = "Motha Fuckin Coffee";
-        displayMotha(message2);
+
+        if (quantity > 0) {
+            Toast.makeText(getApplicationContext(), "Motha Fuckin Coffeee.",
+                    Toast.LENGTH_LONG).show();
+        }
+
         return priceMessage;
 
     }
@@ -125,14 +159,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMotha(String message2) {
-        TextView yissView = (TextView) findViewById(R.id.motha_text_view);
-        yissView.setText(message2);
-    }
-
-    /**
      * This method decrements the quantity by 1 when the minus button is clicked.
      */
     public void reset(View view) {
@@ -140,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         priceMessage = "$" + quantity;
         displayMessage(priceMessage);
         displayQuantity(quantity);
-        displayMotha("");
     }
 
 }
