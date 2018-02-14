@@ -23,8 +23,9 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 2;
     String priceMessage = "";
+    String orderName = "";
 
 
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         //        Find the user's name
         EditText nameInputView = findViewById(R.id.name_input);
-        String orderName = nameInputView.getText().toString();
+        orderName = nameInputView.getText().toString();
 
         //        Whipped Cream true  / false
         CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
@@ -108,22 +109,26 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, boolean addCatShit, boolean addButmeg, String name) {
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
-        priceMessage += "\nAdd chocolate?  " + addChocolate;
-        priceMessage += "\nAdd cat shit?  " + addCatShit;
-        priceMessage += "\nAdd butmeg?  " + addButmeg;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal = $" + price;
-        priceMessage += "\nThank you!";
 
-        if (quantity > 0) {
+        if (quantity >= 1) {
+
+            String priceMessage = "Name: " + name;
+            priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
+            priceMessage += "\nAdd chocolate?  " + addChocolate;
+            priceMessage += "\nAdd cat shit?  " + addCatShit;
+            priceMessage += "\nAdd butmeg?  " + addButmeg;
+            priceMessage += "\nQuantity: " + quantity;
+            priceMessage += "\nTotal = $" + price;
+            priceMessage += "\nThank you!";
+
+
             Toast.makeText(getApplicationContext(), "Motha Fuckin Coffeee.",
                     Toast.LENGTH_LONG).show();
+
+            return priceMessage;
         }
 
-        return priceMessage;
-
+        return priceMessage = "Whoa, " + orderName + "! \nWhatcha gonna do with all that coffee?";
     }
 
     /**
@@ -146,16 +151,20 @@ public class MainActivity extends AppCompatActivity {
      * This method increments the quantity by 1 when the plus button is clicked.
      */
     public void increment(View view) {
-        quantity = quantity + 1;
-        displayQuantity(quantity);
+        if (quantity <= 100) {
+            quantity = quantity + 1;
+            displayQuantity(quantity);
+        }
     }
 
     /**
      * This method decrements the quantity by 1 when the minus button is clicked.
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
-        displayQuantity(quantity);
+        if (quantity >= 2) {
+            quantity = quantity - 1;
+            displayQuantity(quantity);
+        }
     }
 
     /**
