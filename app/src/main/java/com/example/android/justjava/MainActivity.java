@@ -9,6 +9,8 @@
 package com.example.android.justjava;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,8 +26,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 2;
-    String priceMessage = "";
     String orderName = "";
+    String orderEmail = "";
 
 
     @Override
@@ -42,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         EditText nameInputView = findViewById(R.id.name_input);
         orderName = nameInputView.getText().toString();
 
+        //        Find the user's email address
+        EditText emailInputView = findViewById(R.id.email_input);
+        orderEmail = emailInputView.getText().toString();
+
         //        Whipped Cream true  / false
         CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
@@ -50,20 +56,12 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckbox = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckbox.isChecked();
 
-        //        Cat shit true / false
-        CheckBox catShitCheckbox = findViewById(R.id.cat_shit_checkbox);
-        boolean hasCatShit = catShitCheckbox.isChecked();
-
-        //        Butmeg true  / false
-        CheckBox butmegCheckbox = findViewById(R.id.butmeg_checkbox);
-        boolean hasButmeg = butmegCheckbox.isChecked();
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
 
 
-        int price = calculatePrice(hasWhippedCream, hasChocolate, hasCatShit, hasButmeg);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, orderName);
 
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, hasCatShit, hasButmeg, orderName);
-
-        displayMessage(priceMessage);
+        composeEmail(orderEmail, priceMessage);
     }
 
     /**
@@ -71,10 +69,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return total price for the number of cups of coffee ordered
      */
-    private int calculatePrice(boolean addWhippedCream, boolean addChocolate, boolean addCatShit, boolean addButmeg) {
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
+
         int basePrice = 5;
 
-//        Add $$ if user wants topping
+//        Add to base price if user wants toppings
         if (addWhippedCream) {
 
             basePrice += 1;
@@ -83,16 +82,6 @@ public class MainActivity extends AppCompatActivity {
         if (addChocolate) {
 
             basePrice += 2;
-        }
-
-        if (addCatShit) {
-
-            basePrice += 3;
-        }
-
-        if (addButmeg) {
-
-            basePrice += 4;
         }
 
         return quantity * basePrice;
@@ -104,31 +93,18 @@ public class MainActivity extends AppCompatActivity {
      * @param price           cost of order
      * @param addWhippedCream add whipped cream true or false
      * @param addChocolate    add chocolate true or false
-     * @param addCatShit      add cat shit true or false
-     * @param addButmeg       add butmeg tru or false
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, boolean addCatShit, boolean addButmeg, String name) {
-
-        if (quantity >= 1) {
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
 
             String priceMessage = "Name: " + name;
             priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
             priceMessage += "\nAdd chocolate?  " + addChocolate;
-            priceMessage += "\nAdd cat shit?  " + addCatShit;
-            priceMessage += "\nAdd butmeg?  " + addButmeg;
             priceMessage += "\nQuantity: " + quantity;
             priceMessage += "\nTotal = $" + price;
             priceMessage += "\nThank you!";
 
-
-            Toast.makeText(getApplicationContext(), "Motha Fuckin Coffee",
-                    Toast.LENGTH_LONG).show();
-
             return priceMessage;
-        }
-
-        return priceMessage = "Whoa, " + orderName + "! \nWhatcha gonna do with all that coffee?";
     }
 
     /**
@@ -139,19 +115,23 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + showNumber);
     }
 
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
+
+    public void composeEmail(String email, String subject) {
+        email = orderEmail;
+        Intent javaMail = new Intent(Intent.ACTION_SENDTO);
+        javaMail.setData(Uri.parse("mailto:")); // only email apps should handle this
+        javaMail.putExtra(Intent.EXTRA_EMAIL, email);
+        javaMail.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + orderName);
+        if (javaMail.resolveActivity(getPackageManager()) != null) {
+            startActivity(javaMail);
+        }
     }
 
     /**
      * This method increments the quantity by 1 when the plus button is clicked.
      */
     public void increment(View view) {
-        if (quantity == 10) {
+        if (quantity == 10) {  //TODO: Make this 100 when you are done
             Toast.makeText(getApplicationContext(), "too much coffee, man",
                     Toast.LENGTH_SHORT).show();
             return;
@@ -169,17 +149,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        quantity = quantity - 1;
-        displayQuantity(quantity);
-    }
 
-    /**
-     * This method decrements the quantity by 1 when the minus button is clicked.
-     */
-    public void reset(View view) {
-        quantity = 0;
-        priceMessage = "$" + quantity;
-        displayMessage(priceMessage);
+        quantity = quantity - 1;
         displayQuantity(quantity);
     }
 
