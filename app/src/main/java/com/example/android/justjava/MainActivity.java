@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     int quantity = 2;
     String orderName = "";
     String orderEmail = "";
+    String priceMessage = "";
 
 
     @Override
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, orderName);
 
-        composeEmail(orderEmail, priceMessage);
+        composeEmail();
     }
 
     /**
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
 
-            String priceMessage = "Name: " + name;
+            priceMessage = "Name: " + name;
             priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
             priceMessage += "\nAdd chocolate?  " + addChocolate;
             priceMessage += "\nQuantity: " + quantity;
@@ -116,12 +117,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void composeEmail(String email, String subject) {
-        email = orderEmail;
+    public void composeEmail() {
         Intent javaMail = new Intent(Intent.ACTION_SENDTO);
         javaMail.setData(Uri.parse("mailto:")); // only email apps should handle this
-        javaMail.putExtra(Intent.EXTRA_EMAIL, email);
         javaMail.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + orderName);
+        javaMail.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (javaMail.resolveActivity(getPackageManager()) != null) {
             startActivity(javaMail);
         }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
      * This method increments the quantity by 1 when the plus button is clicked.
      */
     public void increment(View view) {
-        if (quantity == 10) {  //TODO: Make this 100 when you are done
+        if (quantity == 100) {
             Toast.makeText(getApplicationContext(), "too much coffee, man",
                     Toast.LENGTH_SHORT).show();
             return;
