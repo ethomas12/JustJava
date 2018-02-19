@@ -41,13 +41,6 @@
                     android:hint="@string/name"
                     android:inputType="textCapWords" />
 
-                <!--<EditText-->
-                    <!--android:id="@+id/email_input"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="@string/email"-->
-                    <!--android:inputType="textEmailAddress" />-->
-
                 <TextView
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
@@ -128,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="submitOrder"
-                    android:text="@string/btn_text" />
+                    android:text="@string/order" />
 
             </LinearLayout>
 

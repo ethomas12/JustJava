@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 2;
     String orderName = "";
-    String orderEmail = "";
     String priceMessage = "";
 
 
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent javaMail = new Intent(Intent.ACTION_SENDTO);
         javaMail.setData(Uri.parse("mailto:")); // only email apps should handle this
-        javaMail.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + orderName);
+        javaMail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.order_summary_email_subject, orderName));
         javaMail.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (javaMail.resolveActivity(getPackageManager()) != null) {
             startActivity(javaMail);
@@ -131,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
 
-            priceMessage = getString(R.string.order_summary_name);
-            priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
-            priceMessage += "\nAdd chocolate?  " + addChocolate;
-            priceMessage += "\nQuantity: " + quantity;
-            priceMessage += "\nTotal = $" + price;
-            priceMessage += "\n" + getString(R.string.thank_you);
+        priceMessage = getString(R.string.order_summary_email_subject, orderName);
+        priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
+        priceMessage += "\nAdd chocolate?  " + addChocolate;
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal = $" + price;
+        priceMessage += "\n" + getString(R.string.thank_you);
 
-            return priceMessage;
+        return priceMessage;
     }
 
     /**
