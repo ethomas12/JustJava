@@ -37,6 +37,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+    /**
+     * This method increments the quantity by 1 when the plus button is clicked.
+     */
+    public void increment(View view) {
+        if (quantity == 100) {
+            Toast.makeText(getApplicationContext(), "too much coffee, man",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        quantity = quantity + 1;
+        displayQuantity(quantity);
+    }
+
+    /**
+     * This method decrements the quantity by 1 when the minus button is clicked.
+     */
+    public void decrement(View view) {
+        if (quantity == 1) {
+            Toast.makeText(getApplicationContext(), "that's negative coffee, man",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        quantity = quantity - 1;
+        displayQuantity(quantity);
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
@@ -45,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
         EditText nameInputView = findViewById(R.id.name_input);
         orderName = nameInputView.getText().toString();
 
-        //        Find the user's email address
-        EditText emailInputView = findViewById(R.id.email_input);
-        orderEmail = emailInputView.getText().toString();
 
         //        Whipped Cream true  / false
         CheckBox whippedCreamCheckbox = findViewById(R.id.whipped_cream_checkbox);
@@ -59,10 +84,18 @@ public class MainActivity extends AppCompatActivity {
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
 
-
+        // Display the order summary on the screen
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, orderName);
 
-        composeEmail();
+
+        Intent javaMail = new Intent(Intent.ACTION_SENDTO);
+        javaMail.setData(Uri.parse("mailto:")); // only email apps should handle this
+        javaMail.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + orderName);
+        javaMail.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (javaMail.resolveActivity(getPackageManager()) != null) {
+            startActivity(javaMail);
+        }
+
     }
 
     /**
@@ -98,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String name) {
 
-            priceMessage = "Name: " + name;
+            priceMessage = getString(R.string.order_summary_name);
             priceMessage += "\nAdd whipped cream?  " + addWhippedCream;
             priceMessage += "\nAdd chocolate?  " + addChocolate;
             priceMessage += "\nQuantity: " + quantity;
             priceMessage += "\nTotal = $" + price;
-            priceMessage += "\nThank you!";
+            priceMessage += "\n" + getString(R.string.thank_you);
 
             return priceMessage;
     }
@@ -114,44 +147,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int showNumber) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + showNumber);
-    }
-
-
-    public void composeEmail() {
-        Intent javaMail = new Intent(Intent.ACTION_SENDTO);
-        javaMail.setData(Uri.parse("mailto:")); // only email apps should handle this
-        javaMail.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + orderName);
-        javaMail.putExtra(Intent.EXTRA_TEXT, priceMessage);
-        if (javaMail.resolveActivity(getPackageManager()) != null) {
-            startActivity(javaMail);
-        }
-    }
-
-    /**
-     * This method increments the quantity by 1 when the plus button is clicked.
-     */
-    public void increment(View view) {
-        if (quantity == 100) {
-            Toast.makeText(getApplicationContext(), "too much coffee, man",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-        quantity = quantity + 1;
-        displayQuantity(quantity);
-    }
-
-    /**
-     * This method decrements the quantity by 1 when the minus button is clicked.
-     */
-    public void decrement(View view) {
-        if (quantity == 1) {
-            Toast.makeText(getApplicationContext(), "that's negative coffee, man",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        quantity = quantity - 1;
-        displayQuantity(quantity);
     }
 
 }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.android.justjava.MainActivity">
+
     <ImageView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:gravity="left"
         android:src="@drawable/coffee"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         />
@@ -21,40 +21,38 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp">
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingTop="60dp"
                 android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp">
+                android:layout_centerInParent="true">
 
                 <EditText
                     android:id="@+id/name_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:inputType="textCapWords" />
 
-                <EditText
-                    android:id="@+id/email_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Your Email"
-                    android:inputType="textCapWords" />
+                <!--<EditText-->
+                    <!--android:id="@+id/email_input"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="@string/email"-->
+                    <!--android:inputType="textEmailAddress" />-->
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="16dp"
-                    android:paddingTop="16dp"
-                    android:text="toppings"
-                    android:textAllCaps="true" />
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/toppings"
+                    style="@style/HeaderTextStyle"/>
 
                 <CheckBox
                     android:id="@+id/whipped_cream_checkbox"
@@ -62,9 +60,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:paddingLeft="24dp"
-                    android:text="Whipped Cream"
+                    android:text="@string/whipped_cream"
                     android:textSize="16sp"
-                    android:textColor="@color/white" />
+                     />
 
                 <CheckBox
                     android:id="@+id/chocolate_checkbox"
@@ -72,17 +70,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:paddingLeft="24dp"
-                    android:text="Chocolate"
+                    android:text="@string/chocolate"
                     android:textSize="16sp"
-                    android:textColor="@color/white"/>
+                    />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:paddingTop="16dp"
                     android:text="@string/quantity_text_view"
-                    android:textAllCaps="true" />
+                    style="@style/HeaderTextStyle"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -104,7 +101,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:paddingTop="8dp"
-                        android:text="2"
+                        android:text="@string/startQuantity"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -116,23 +113,6 @@
                         android:onClick="increment"
                         android:text="+" />
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:text="@string/price_text_view"
-                    android:textAllCaps="true" />
-
-                <TextView
-                    android:id="@+id/order_summary_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="8dp"
-                    android:text="$0"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/confirm_text_view"
@@ -151,17 +131,6 @@
                     android:text="@string/btn_text" />
 
             </LinearLayout>
-
-            <!--<Button-->
-            <!--android:id="@+id/reset_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginRight="8dp"-->
-            <!--android:onClick="reset"-->
-            <!--android:text="reset" />-->
 
         </RelativeLayout>
     </ScrollView>
